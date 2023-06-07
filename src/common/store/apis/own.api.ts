@@ -29,13 +29,14 @@ export const ownApi = createApi({
     getUser: builder.query<IUser, void>({
       query: () => '/users/me',
     }),
-    getCourses: builder.query<ICourse[], string>({
-      query: (id: string) => `/users/${id}/courses`,
+    getCourses: builder.query<ICourse[], void>({
+      query: () => '/users/me/courses',
     }),
   }),
 });
 
 export const {
   useGetUserQuery,
+  useGetCoursesQuery,
   endpoints: { getCourses },
 } = ownApi;

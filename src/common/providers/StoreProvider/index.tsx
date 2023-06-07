@@ -12,7 +12,7 @@ export const StoreProvider: FC<IStoreProviderProps> = ({ children }) => {
   useEffect(() => {
     (async () => {
       try {
-        const token = await getAccessTokenSilently({});
+        const token = await getAccessTokenSilently();
         store.dispatch(setAccessToken(token));
       } catch (e) {
         console.error(e);

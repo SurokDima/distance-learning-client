@@ -1,24 +1,85 @@
-import { theme } from 'antd';
+import { Spin, theme } from 'antd';
 import { FC, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { LoginSuccessPage } from '@/auth/pages/LoginSuccessPage';
 import { LogoutSuccessPage } from '@/auth/pages/LogoutSuccessPage';
+import { Auth0Provider } from '@/auth/providers/Auth0Provider';
+import { LoginSuccessMessageProvider } from '@/auth/providers/LoginSuccessMessageProvider';
 import { PrivateRoute } from '@/common/components/PrivateRoute';
 import { MainLayout } from '@/common/layouts/MainLayout';
-import { ErrorPage, ErrorPageView } from '@/common/pages/ErrorPage';
 import { HomePage } from '@/common/pages/HomePage';
+import { GlobalLoaderProvider } from '@/common/providers/GlobalLoaderProvider';
+import { NotificationProvider } from '@/common/providers/NotificationProvider';
+import { StoreProvider } from '@/common/providers/StoreProvider';
+import { ThemeProvider } from '@/common/providers/ThemeProvider';
+import { store } from '@/common/store';
+import { getCourses } from '@/common/store/apis/own.api';
 import { DashboardPage } from '@/user/pages/DashboardPage';
+
+const Providers: FC = () => {
+  return (
+    <ThemeProvider>
+      <GlobalLoaderProvider>
+        <NotificationProvider>
+          <Auth0Provider>
+            <StoreProvider>
+              <LoginSuccessMessageProvider>
+                <Outlet />
+              </LoginSuccessMessageProvider>
+            </StoreProvider>
+          </Auth0Provider>
+        </NotificationProvider>
+      </GlobalLoaderProvider>
+    </ThemeProvider>
+  );
+};
+
+const router = createBrowserRouter([
+  {
+    element: <Providers />,
+    children: [
+      {
+        element: <MainLayout />,
+        children: [
+          {
+            path: '/logoutSuccessful',
+            element: <LogoutSuccessPage />,
+          },
+          {
+            path: '/loginSuccessful',
+            element: <LoginSuccessPage />,
+          },
+          {
+            path: '/',
+            element: <HomePage />,
+          },
+          {
+            path: '/',
+            element: <PrivateRoute />,
+            children: [
+              {
+                path: '/dashboard',
+                loader: () => {
+                  if (!store.getState().auth.accessToken)
+                    return Promise.resolve(null);
+
+                  return store.dispatch(getCourses.initiate());
+                },
+                element: <DashboardPage />,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]);
 
 const App: FC = () => {
   const {
     token: { colorBgBase },
   } = theme.useToken();
-
-  // const { user } = useAuth0();
-  // const { data } = useGetUserQuery(undefined, { skip: !user });
-
-  // const dispatch = useAppDispatch();
 
   useEffect(() => {
     document.body.style.backgroundColor = colorBgBase;
@@ -36,33 +97,7 @@ const App: FC = () => {
     setTimeout(() => (globalLoader.style.opacity = '0'));
   }, []);
 
-  return (
-    <Routes>
-      <Route element={<ErrorPage />}>
-        <Route element={<MainLayout />} errorElement={<ErrorPageView />}>
-          <Route element={<ErrorPage />}>
-            <Route path="/logoutSuccessful" element={<LogoutSuccessPage />} />
-            <Route path="/loginSuccessful" element={<LoginSuccessPage />} />
-            <Route
-              path="/"
-              errorElement={<ErrorPageView />}
-              element={<HomePage />}
-            />
-            <Route path="/" element={<PrivateRoute />}>
-              <Route
-                path="/dashboard"
-                // loader={() => {
-                //   if (!data) return Promise.resolve(null);
-                //   return dispatch(getCourses.initiate(data.id));
-                // }}
-                element={<DashboardPage />}
-              />
-            </Route>
-          </Route>
-        </Route>
-      </Route>
-    </Routes>
-  );
+  return <RouterProvider fallbackElement={<Spin />} router={router} />;
 };
 
 export default App;

@@ -3,15 +3,20 @@ import { Button, Space } from 'antd';
 import { FC } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-import { useGetUserQuery } from '@/common/store/apis/own.api';
+import {
+  useGetCoursesQuery,
+  useGetUserQuery,
+} from '@/common/store/apis/own.api';
 
 export const DashboardPage: FC = () => {
   const { user, logout } = useAuth0();
   const { data, isLoading } = useGetUserQuery();
-  const datas = useLoaderData();
+  const loaderData = useLoaderData();
+  const { data: courses, isLoading: isCoursesLoading } = useGetCoursesQuery();
 
-  console.log(datas);
-  console.log(data, isLoading);
+  console.log('LOADERDATA', loaderData);
+  console.log('HOOK', courses, isCoursesLoading);
+  console.log('USER', data, isLoading);
 
   return (
     <Space direction="vertical">
