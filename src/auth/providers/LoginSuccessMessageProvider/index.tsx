@@ -1,6 +1,7 @@
-import { notification } from 'antd';
-import { FC, ReactNode, useEffect } from 'react';
+import { FC, ReactNode, useContext, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import { NotificationContext } from '@/common/providers/NotificationProvider';
 
 interface ILocationState {
   auth?: 'LOGIN' | 'LOGOUT';
@@ -12,19 +13,20 @@ export const LoginSuccessMessageProvider: FC<{
   const location = useLocation();
   const state = location.state as ILocationState;
   const navigate = useNavigate();
+  const api = useContext(NotificationContext);
 
   const authParam = state?.auth;
 
   useEffect(() => {
     if (authParam !== 'LOGIN') return;
 
-    notification.success({
+    api.success({
       message: 'Login successful!',
     });
 
     // TODO improve that
     navigate(window.location.pathname, { replace: true });
-  }, [authParam, navigate]);
+  }, [api, authParam, navigate]);
 
   return <>{children}</>;
 };
