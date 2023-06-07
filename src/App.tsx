@@ -15,6 +15,11 @@ const App: FC = () => {
     token: { colorBgBase },
   } = theme.useToken();
 
+  // const { user } = useAuth0();
+  // const { data } = useGetUserQuery(undefined, { skip: !user });
+
+  // const dispatch = useAppDispatch();
+
   useEffect(() => {
     document.body.style.backgroundColor = colorBgBase;
   }, [colorBgBase]);
@@ -44,7 +49,14 @@ const App: FC = () => {
               element={<HomePage />}
             />
             <Route path="/" element={<PrivateRoute />}>
-              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route
+                path="/dashboard"
+                // loader={() => {
+                //   if (!data) return Promise.resolve(null);
+                //   return dispatch(getCourses.initiate(data.id));
+                // }}
+                element={<DashboardPage />}
+              />
             </Route>
           </Route>
         </Route>

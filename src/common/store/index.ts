@@ -8,9 +8,11 @@ export const store = configureStore({
   reducer: {
     auth: authSliceReducer,
     [ownApi.reducerPath]: ownApi.reducer,
+    // [coursesApi.reducerPath]: coursesApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(ownApi.middleware),
+  // .concat(coursesApi.middleware),
 });
 
 setupListeners(store.dispatch);

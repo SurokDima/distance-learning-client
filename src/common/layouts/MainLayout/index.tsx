@@ -1,13 +1,9 @@
-import {
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-} from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button, Layout, Menu, MenuProps, Space, theme } from 'antd';
-import { FC, createElement } from 'react';
+import { FC } from 'react';
 import { createPortal } from 'react-dom';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 import { ToggleThemeButton } from '@/common/components/ToggleThemeButton';
 import { Logo } from '@/common/layouts/MainLayout/components/Logo';
@@ -19,26 +15,12 @@ const { Header, Sider, Content } = Layout;
 const { useToken } = theme;
 
 const items2: MenuProps['items'] = [
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-].map((icon, index) => {
-  const key = String(index + 1);
-
-  return {
-    key: `sub${key}`,
-    icon: createElement(icon),
-    label: `subnav ${key}`,
-
-    children: new Array(4).fill(null).map((_, j) => {
-      const subKey = index * 4 + j + 1;
-      return {
-        key: subKey,
-        label: `option${subKey}`,
-      };
-    }),
-  };
-});
+  {
+    key: 'dashboard',
+    label: <Link to="/dashboard">Dashboard</Link>,
+    icon: <UserOutlined />,
+  },
+];
 
 export const MainLayout: FC = () => {
   const { isLoading, user, loginWithRedirect } = useAuth0();

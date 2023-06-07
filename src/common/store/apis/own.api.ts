@@ -4,6 +4,13 @@ import { RootState } from '@/common/store/interfaces';
 import { getEnvOrThrow } from '@/common/utils/getEnvOrThrow';
 import { IUser } from '@/user/interfaces';
 
+// TODO move it
+interface ICourse {
+  id: string;
+  name: string;
+  author: IUser;
+}
+
 export const ownApi = createApi({
   reducerPath: 'ownApi',
   baseQuery: fetchBaseQuery({
@@ -22,7 +29,13 @@ export const ownApi = createApi({
     getUser: builder.query<IUser, void>({
       query: () => '/users/me',
     }),
+    getCourses: builder.query<ICourse[], string>({
+      query: (id: string) => `/users/${id}/courses`,
+    }),
   }),
 });
 
-export const { useGetUserQuery } = ownApi;
+export const {
+  useGetUserQuery,
+  endpoints: { getCourses },
+} = ownApi;
