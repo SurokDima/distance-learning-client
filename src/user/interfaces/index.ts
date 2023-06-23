@@ -1,8 +1,8 @@
 export interface IUser {
   id: string;
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   attendingCoursesIds: string[];
   auth0Id: string;
+  avatarUrl: string;
 }

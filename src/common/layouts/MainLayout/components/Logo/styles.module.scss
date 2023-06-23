@@ -1,7 +1,22 @@
 .logo {
-  font-size: 1.5rem;
-  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-weight: 800;
   cursor: pointer;
   color: white;
   padding: 5px;
+
+  &:hover {
+    color: white;
+  }
+
+  &.short {
+    font-size: 2rem;
+  }
+
+  &.long {
+    font-size: 1.5rem;
+  }
 }

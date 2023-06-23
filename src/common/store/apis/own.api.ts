@@ -1,16 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { ICreateQuizBody } from '@/common/store/apis/interfaces/createQuizBody';
 import { RootState } from '@/common/store/interfaces';
 import { getEnvOrThrow } from '@/common/utils/getEnvOrThrow';
+import { ICourse } from '@/course/interfaces';
 import { IUser } from '@/user/interfaces';
-
-// TODO move it
-interface ICourse {
-  id: string;
-  name: string;
-  author: IUser;
-}
-
 export const ownApi = createApi({
   reducerPath: 'ownApi',
   baseQuery: fetchBaseQuery({
@@ -32,11 +26,19 @@ export const ownApi = createApi({
     getCourses: builder.query<ICourse[], void>({
       query: () => '/users/me/courses',
     }),
+    createQuiz: builder.mutation<{ id: string }, ICreateQuizBody>({
+      query: (body) => ({
+        url: '/quizzes',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
 export const {
   useGetUserQuery,
   useGetCoursesQuery,
+  useCreateQuizMutation,
   endpoints: { getCourses },
 } = ownApi;

@@ -1,11 +1,12 @@
 import { Button, Result } from 'antd';
 import { FC } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useNavigate, useRouteError } from 'react-router-dom';
 
 import styles from './styles.module.scss';
 
-export const ErrorPageView: FC = () => {
+export const ErrorPage: FC = () => {
+  const error = useRouteError();
+  console.log(error);
   const navigate = useNavigate();
 
   return (
@@ -21,13 +22,5 @@ export const ErrorPageView: FC = () => {
         }
       />
     </div>
-  );
-};
-
-export const ErrorPage: FC = () => {
-  return (
-    <ErrorBoundary fallback={<ErrorPageView />}>
-      <Outlet />
-    </ErrorBoundary>
   );
 };

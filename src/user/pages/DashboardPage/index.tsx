@@ -1,5 +1,3 @@
-import { useAuth0 } from '@auth0/auth0-react';
-import { Button, Space } from 'antd';
 import { FC } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
@@ -7,9 +5,11 @@ import {
   useGetCoursesQuery,
   useGetUserQuery,
 } from '@/common/store/apis/own.api';
+import { CourseCard } from '@/course/components/CourseCard';
+
+import styles from './styles.module.scss';
 
 export const DashboardPage: FC = () => {
-  const { user, logout } = useAuth0();
   const { data, isLoading } = useGetUserQuery();
   const loaderData = useLoaderData();
   const { data: courses, isLoading: isCoursesLoading } = useGetCoursesQuery();
@@ -19,21 +19,10 @@ export const DashboardPage: FC = () => {
   console.log('USER', data, isLoading);
 
   return (
-    <Space direction="vertical">
-      <div>User name: {user?.given_name}</div>
-      <Button
-        type="primary"
-        onClick={() =>
-          logout({
-            logoutParams: {
-              st: 'sdf',
-              returnTo: 'http://localhost:5173/logoutSuccessful',
-            },
-          })
-        }
-      >
-        Logout
-      </Button>
-    </Space>
+    <div className={styles.coursesContainer}>
+      {courses?.map((course) => (
+        <CourseCard course={course} />
+      ))}
+    </div>
   );
 };

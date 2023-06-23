@@ -36,9 +36,6 @@ export const PrivateRoute: FC = () => {
               onClick={() =>
                 loginWithRedirect({
                   appState: { returnTo: pathname },
-                  // appState: {
-                  //   returnTo: `${window.location.origin}${pathname}`,
-                  // },
                 })
               }
               loading={isLoading}

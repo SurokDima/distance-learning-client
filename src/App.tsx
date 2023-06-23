@@ -1,4 +1,4 @@
-import { Spin, theme } from 'antd';
+import { Spin } from 'antd';
 import { FC, useEffect } from 'react';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 
@@ -8,29 +8,31 @@ import { Auth0Provider } from '@/auth/providers/Auth0Provider';
 import { LoginSuccessMessageProvider } from '@/auth/providers/LoginSuccessMessageProvider';
 import { PrivateRoute } from '@/common/components/PrivateRoute';
 import { MainLayout } from '@/common/layouts/MainLayout';
-import { HomePage } from '@/common/pages/HomePage';
+import { ErrorPage } from '@/common/pages/ErrorPage';
+import { BodyBgColorProvider } from '@/common/providers/BodyBgColorProvider';
 import { GlobalLoaderProvider } from '@/common/providers/GlobalLoaderProvider';
 import { NotificationProvider } from '@/common/providers/NotificationProvider';
 import { StoreProvider } from '@/common/providers/StoreProvider';
 import { ThemeProvider } from '@/common/providers/ThemeProvider';
 import { store } from '@/common/store';
 import { getCourses } from '@/common/store/apis/own.api';
-import { DashboardPage } from '@/user/pages/DashboardPage';
 
 const Providers: FC = () => {
   return (
     <ThemeProvider>
-      <GlobalLoaderProvider>
-        <NotificationProvider>
-          <Auth0Provider>
-            <StoreProvider>
-              <LoginSuccessMessageProvider>
-                <Outlet />
-              </LoginSuccessMessageProvider>
-            </StoreProvider>
-          </Auth0Provider>
-        </NotificationProvider>
-      </GlobalLoaderProvider>
+      <BodyBgColorProvider>
+        <GlobalLoaderProvider>
+          <NotificationProvider>
+            <Auth0Provider>
+              <StoreProvider>
+                <LoginSuccessMessageProvider>
+                  <Outlet />
+                </LoginSuccessMessageProvider>
+              </StoreProvider>
+            </Auth0Provider>
+          </NotificationProvider>
+        </GlobalLoaderProvider>
+      </BodyBgColorProvider>
     </ThemeProvider>
   );
 };
@@ -52,7 +54,10 @@ const router = createBrowserRouter([
           },
           {
             path: '/',
-            element: <HomePage />,
+            lazy: async () => {
+              const { HomePage } = await import('@/common/pages/HomePage');
+              return { Component: HomePage };
+            },
           },
           {
             path: '/',
@@ -60,14 +65,43 @@ const router = createBrowserRouter([
             children: [
               {
                 path: '/dashboard',
+                errorElement: <ErrorPage />,
+
                 loader: () => {
                   if (!store.getState().auth.accessToken)
                     return Promise.resolve(null);
 
                   return store.dispatch(getCourses.initiate());
                 },
-                element: <DashboardPage />,
+                lazy: async () => {
+                  const { DashboardPage } = await import(
+                    '@/user/pages/DashboardPage'
+                  );
+
+                  return { Component: DashboardPage };
+                },
               },
+              {
+                path: '/quizzes/create',
+                errorElement: <ErrorPage />,
+                lazy: async () => {
+                  const { CreateQuizPage } = await import(
+                    '@/quiz/pages/CreateQuizPage'
+                  );
+
+                  return { Component: CreateQuizPage };
+                },
+              },
+              // {
+              //   path: '/users/me/courses/:id',
+              //   element: <CoursePage />,
+              //   loader: () => {
+              //     if (!store.getState().auth.accessToken)
+              //       return Promise.resolve(null);
+
+              //     return store.dispatch(getCourse.initiate());
+              //   },
+              // },
             ],
           },
         ],
@@ -77,14 +111,6 @@ const router = createBrowserRouter([
 ]);
 
 const App: FC = () => {
-  const {
-    token: { colorBgBase },
-  } = theme.useToken();
-
-  useEffect(() => {
-    document.body.style.backgroundColor = colorBgBase;
-  }, [colorBgBase]);
-
   useEffect(() => {
     const globalLoader =
       document.querySelector<HTMLDivElement>('.loaderContainer');

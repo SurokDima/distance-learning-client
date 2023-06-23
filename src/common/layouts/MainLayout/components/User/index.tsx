@@ -5,7 +5,7 @@ import {
   DownOutlined,
 } from '@ant-design/icons';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Space, Dropdown, Typography, MenuProps, Avatar } from 'antd';
+import { Space, Dropdown, MenuProps, Avatar, Typography } from 'antd';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -58,9 +58,8 @@ export const User: FC = () => {
           }
           className={styles.avatar}
         />
-        {/* TODO fix text color for LIGHT theme */}
-        <Typography.Text className={styles.text}>{user?.name}</Typography.Text>
-        <DownOutlined className={styles.arrowIcon} />
+        <Typography.Text>{user?.name}</Typography.Text>
+        <DownOutlined />
       </Space>
     </Dropdown>
   );

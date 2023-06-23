@@ -1,7 +1,12 @@
-import { UserOutlined } from '@ant-design/icons';
+import {
+  UserOutlined,
+  BookOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+} from '@ant-design/icons';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Button, Layout, Menu, MenuProps, Space, theme } from 'antd';
-import { FC } from 'react';
+import { Button, Layout, Menu, MenuProps, theme } from 'antd';
+import { FC, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, Outlet } from 'react-router-dom';
 
@@ -20,9 +25,17 @@ const items2: MenuProps['items'] = [
     label: <Link to="/dashboard">Dashboard</Link>,
     icon: <UserOutlined />,
   },
+  {
+    key: 'create-quiz',
+    label: <Link to="/quizzes/create">Create Quiz</Link>,
+    icon: <BookOutlined />,
+  },
 ];
 
+// TODO refactore
+
 export const MainLayout: FC = () => {
+  const [isCollapsed, setCollapsed] = useState(false);
   const { isLoading, user, loginWithRedirect } = useAuth0();
   const {
     token: { colorBgContainer },
@@ -30,66 +43,88 @@ export const MainLayout: FC = () => {
 
   return (
     <>
-      <Layout style={{ height: '100vh' }}>
-        <Header
+      <Layout hasSider style={{ minHeight: '100vh' }}>
+        <Sider
+          collapsed={isCollapsed}
+          width={200}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            overflow: 'auto',
+            userSelect: 'none',
+            height: '100vh',
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            bottom: 0,
+            width: 200,
+            minWidth: 200,
+            maxWidth: 200,
           }}
         >
-          <Space size="large">
-            <Logo />
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              defaultSelectedKeys={['2']}
-              items={new Array(4).fill(null).map((_, index) => {
-                const key = index + 1;
-                return {
-                  key,
-                  label: `nav ${key}`,
-                };
-              })}
-            />
-          </Space>
-          {isLoading ? (
-            <UserSkeleton />
-          ) : user ? (
-            <User />
-          ) : (
-            <Button
-              type="primary"
-              onClick={() =>
-                loginWithRedirect({
-                  appState: {
-                    returnTo: window.location.pathname,
-                  },
-                })
-              }
-            >
-              Sign in
-            </Button>
-          )}
-        </Header>
-        <Layout>
-          <Sider
-            width={200}
+          <Logo form={isCollapsed ? 'short' : 'long'} />
+
+          <Menu
+            mode="vertical"
+            theme="dark"
+            defaultSelectedKeys={['1']}
+            defaultOpenKeys={['sub1']}
+            style={{ height: '100%', borderRight: 0 }}
+            items={items2}
+          />
+        </Sider>
+        <Layout
+          style={{
+            marginLeft: isCollapsed ? 80 : 200,
+            transition: 'margin 0.3s cubic-bezier(0.2, 0, 0, 1) 0s',
+          }}
+        >
+          <Header
             style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
               background: colorBgContainer,
-              userSelect: 'none',
-              height: '100%',
+              paddingLeft: 0,
+              // transition: 'width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s',
             }}
           >
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{ height: '100%', borderRight: 0 }}
-              items={items2}
+            <Button
+              type="text"
+              icon={isCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!isCollapsed)}
+              style={{
+                fontSize: '16px',
+                width: 64,
+                height: 64,
+              }}
             />
-          </Sider>
-          <Content>
+
+            {isLoading ? (
+              <UserSkeleton />
+            ) : user ? (
+              <User />
+            ) : (
+              <Button
+                type="primary"
+                onClick={() =>
+                  loginWithRedirect({
+                    appState: {
+                      returnTo: window.location.pathname,
+                    },
+                  })
+                }
+              >
+                Sign in
+              </Button>
+            )}
+          </Header>
+          <Content
+            style={{
+              margin: '24px 16px',
+              padding: 24,
+              overflow: 'initial',
+              background: colorBgContainer,
+            }}
+          >
             <Outlet />
           </Content>
         </Layout>
