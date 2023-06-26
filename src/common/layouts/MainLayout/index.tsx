@@ -1,7 +1,7 @@
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button, Layout, Menu, theme } from 'antd';
-import { FC, useContext, useState } from 'react';
+import { FC, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Outlet } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ import {
   SIDER_MENU_STYLES,
   TOGGLE_SIDER_BUTTON_STYLES,
 } from '@/common/layouts/MainLayout/styles';
-import { NotificationContext } from '@/common/providers/NotificationProvider';
+import { useNotification } from '@/common/providers/NotificationProvider/hooks';
 
 const { Header, Sider, Content } = Layout;
 const { useToken } = theme;
@@ -27,7 +27,7 @@ const { useToken } = theme;
 export const MainLayout: FC = () => {
   const [isCollapsed, setCollapsed] = useState(false);
   const { isLoading, user, loginWithRedirect } = useAuth0();
-  const notificationApi = useContext(NotificationContext);
+  const notificationApi = useNotification();
 
   const {
     token: { colorBgContainer },

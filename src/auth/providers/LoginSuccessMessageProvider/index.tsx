@@ -1,7 +1,7 @@
-import { FC, ReactNode, useContext, useEffect } from 'react';
+import { FC, ReactNode, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { NotificationContext } from '@/common/providers/NotificationProvider';
+import { useNotification } from '@/common/providers/NotificationProvider/hooks';
 
 interface ILocationState {
   auth?: 'LOGIN' | 'LOGOUT';
@@ -13,7 +13,7 @@ export const LoginSuccessMessageProvider: FC<{
   const location = useLocation();
   const state = location.state as ILocationState;
   const navigate = useNavigate();
-  const api = useContext(NotificationContext);
+  const api = useNotification();
 
   const authParam = state?.auth;
 

@@ -1,12 +1,8 @@
 import { notification } from 'antd';
-import { NotificationInstance } from 'antd/es/notification/interface';
-import { FC, createContext } from 'react';
+import { FC } from 'react';
 
+import { NotificationContext } from '@/common/providers/NotificationProvider/context';
 import { INotificationProviderProps } from '@/common/providers/NotificationProvider/interfaces';
-
-// TODO refactor it
-export const NotificationContext =
-  createContext<NotificationInstance>(notification);
 
 export const NotificationProvider: FC<INotificationProviderProps> = ({
   children,
