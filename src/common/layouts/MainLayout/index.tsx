@@ -1,101 +1,76 @@
-import {
-  UserOutlined,
-  BookOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-} from '@ant-design/icons';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Button, Layout, Menu, MenuProps, theme } from 'antd';
-import { FC, useState } from 'react';
+import { Button, Layout, Menu, theme } from 'antd';
+import { FC, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import { ToggleThemeButton } from '@/common/components/ToggleThemeButton';
 import { Logo } from '@/common/layouts/MainLayout/components/Logo';
 import { User } from '@/common/layouts/MainLayout/components/User';
 import { UserSkeleton } from '@/common/layouts/MainLayout/components/UserSkeleton';
+import { MENU_ITEMS } from '@/common/layouts/MainLayout/constants';
+import {
+  CONTENT,
+  HEADER_STYLES,
+  INNER_LAYOUT_STYLES,
+  LAYOUT_STYLES,
+  SIDER_STYLES,
+  SIDER_MENU_STYLES,
+  TOGGLE_SIDER_BUTTON_STYLES,
+} from '@/common/layouts/MainLayout/styles';
+import { NotificationContext } from '@/common/providers/NotificationProvider';
 
 const { Header, Sider, Content } = Layout;
-
 const { useToken } = theme;
-
-const items2: MenuProps['items'] = [
-  {
-    key: 'dashboard',
-    label: <Link to="/dashboard">Dashboard</Link>,
-    icon: <UserOutlined />,
-  },
-  {
-    key: 'create-quiz',
-    label: <Link to="/quizzes/create">Create Quiz</Link>,
-    icon: <BookOutlined />,
-  },
-];
-
-// TODO refactore
 
 export const MainLayout: FC = () => {
   const [isCollapsed, setCollapsed] = useState(false);
   const { isLoading, user, loginWithRedirect } = useAuth0();
+  const notificationApi = useContext(NotificationContext);
+
   const {
     token: { colorBgContainer },
   } = useToken();
 
+  const handleSignInButtonClick = (): void => {
+    loginWithRedirect({
+      appState: {
+        returnTo: window.location.pathname,
+      },
+    }).catch(() => {
+      notificationApi.error({
+        message: 'Login failed!',
+      });
+    });
+  };
+
   return (
     <>
-      <Layout hasSider style={{ minHeight: '100vh' }}>
-        <Sider
-          collapsed={isCollapsed}
-          width={200}
-          style={{
-            overflow: 'auto',
-            userSelect: 'none',
-            height: '100vh',
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            bottom: 0,
-            width: 200,
-            minWidth: 200,
-            maxWidth: 200,
-          }}
-        >
+      <Layout hasSider style={LAYOUT_STYLES}>
+        <Sider collapsed={isCollapsed} style={SIDER_STYLES}>
           <Logo form={isCollapsed ? 'short' : 'long'} />
 
+          {/* TODO Update menu items selection */}
           <Menu
             mode="vertical"
             theme="dark"
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
-            style={{ height: '100%', borderRight: 0 }}
-            items={items2}
+            style={SIDER_MENU_STYLES}
+            items={MENU_ITEMS}
           />
         </Sider>
-        <Layout
-          style={{
-            marginLeft: isCollapsed ? 80 : 200,
-            transition: 'margin 0.3s cubic-bezier(0.2, 0, 0, 1) 0s',
-          }}
-        >
+        <Layout style={INNER_LAYOUT_STYLES(isCollapsed)}>
           <Header
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
+              ...HEADER_STYLES,
               background: colorBgContainer,
-              paddingLeft: 0,
-              // transition: 'width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s',
             }}
           >
             <Button
               type="text"
               icon={isCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
               onClick={() => setCollapsed(!isCollapsed)}
-              style={{
-                fontSize: '16px',
-                width: 64,
-                height: 64,
-              }}
+              style={TOGGLE_SIDER_BUTTON_STYLES}
             />
 
             {isLoading ? (
@@ -103,25 +78,14 @@ export const MainLayout: FC = () => {
             ) : user ? (
               <User />
             ) : (
-              <Button
-                type="primary"
-                onClick={() =>
-                  loginWithRedirect({
-                    appState: {
-                      returnTo: window.location.pathname,
-                    },
-                  })
-                }
-              >
+              <Button type="primary" onClick={handleSignInButtonClick}>
                 Sign in
               </Button>
             )}
           </Header>
           <Content
             style={{
-              margin: '24px 16px',
-              padding: 24,
-              overflow: 'initial',
+              ...CONTENT,
               background: colorBgContainer,
             }}
           >

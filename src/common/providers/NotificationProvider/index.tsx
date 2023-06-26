@@ -4,6 +4,7 @@ import { FC, createContext } from 'react';
 
 import { INotificationProviderProps } from '@/common/providers/NotificationProvider/interfaces';
 
+// TODO refactor it
 export const NotificationContext =
   createContext<NotificationInstance>(notification);
 
