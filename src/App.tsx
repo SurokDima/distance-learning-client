@@ -2,20 +2,20 @@ import { Spin } from 'antd';
 import { FC, useEffect } from 'react';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import { LoginSuccessPage } from '@/auth/pages/LoginSuccessPage';
-import { LogoutSuccessPage } from '@/auth/pages/LogoutSuccessPage';
-import { Auth0Provider } from '@/auth/providers/Auth0Provider';
-import { LoginSuccessMessageProvider } from '@/auth/providers/LoginSuccessMessageProvider';
-import { PrivateRoute } from '@/common/components/PrivateRoute';
-import { MainLayout } from '@/common/layouts/MainLayout';
-import { ErrorPage } from '@/common/pages/ErrorPage';
-import { BodyBgColorProvider } from '@/common/providers/BodyBgColorProvider';
-import { GlobalLoaderProvider } from '@/common/providers/GlobalLoaderProvider';
-import { NotificationProvider } from '@/common/providers/NotificationProvider';
-import { StoreProvider } from '@/common/providers/StoreProvider';
-import { ThemeProvider } from '@/common/providers/ThemeProvider';
-import { store } from '@/common/store';
-import { getCourses } from '@/common/store/apis/own.api';
+import { LoginSuccessPage } from '@/modules/auth/pages/LoginSuccessPage';
+import { LogoutSuccessPage } from '@/modules/auth/pages/LogoutSuccessPage';
+import { Auth0Provider } from '@/modules/auth/providers/Auth0Provider';
+import { LoginSuccessMessageProvider } from '@/modules/auth/providers/LoginSuccessMessageProvider';
+import { PrivateRoute } from '@/modules/common/components/PrivateRoute';
+import { MainLayout } from '@/modules/common/layouts/MainLayout';
+import { ErrorPage } from '@/modules/common/pages/ErrorPage';
+import { BodyBgColorProvider } from '@/modules/common/providers/BodyBgColorProvider';
+import { GlobalLoaderProvider } from '@/modules/common/providers/GlobalLoaderProvider';
+import { NotificationProvider } from '@/modules/common/providers/NotificationProvider';
+import { StoreProvider } from '@/modules/common/providers/StoreProvider';
+import { ThemeProvider } from '@/modules/common/providers/ThemeProvider';
+import { store } from '@/modules/common/store';
+import { getCourses } from '@/modules/common/store/apis/own.api';
 
 const Providers: FC = () => {
   return (
@@ -55,7 +55,9 @@ const router = createBrowserRouter([
           {
             path: '/',
             lazy: async () => {
-              const { HomePage } = await import('@/common/pages/HomePage');
+              const { HomePage } = await import(
+                '@/modules/common/pages/HomePage'
+              );
               return { Component: HomePage };
             },
           },
@@ -75,7 +77,7 @@ const router = createBrowserRouter([
                 },
                 lazy: async () => {
                   const { DashboardPage } = await import(
-                    '@/user/pages/DashboardPage'
+                    '@/modules/user/pages/DashboardPage'
                   );
 
                   return { Component: DashboardPage };
@@ -86,7 +88,7 @@ const router = createBrowserRouter([
                 errorElement: <ErrorPage />,
                 lazy: async () => {
                   const { CreateQuizPage } = await import(
-                    '@/quiz/pages/CreateQuizPage'
+                    '@/modules/quiz/pages/CreateQuizPage'
                   );
 
                   return { Component: CreateQuizPage };
