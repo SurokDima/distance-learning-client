@@ -16,8 +16,10 @@ const modules: IModule[] = [
 export const rootModule = modules.reduce<IRootModule>(
   (acc, module) => ({
     routes: [...acc.routes, ...(module.routes ?? [])],
+    providers: [...acc.providers, ...(module.providers ?? [])],
   }),
   {
     routes: [],
+    providers: [],
   }
 );
