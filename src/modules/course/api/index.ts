@@ -1,4 +1,4 @@
-import { ownApi } from '@/store/api/own.api';
+import { ownApi } from '@/store/api';
 import { ICourse } from '@/modules/course/interfaces';
 
 const extendedCourseApi = ownApi.injectEndpoints({

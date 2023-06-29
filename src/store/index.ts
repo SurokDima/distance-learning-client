@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
 import { rootModule } from '@/modules';
-import { ownApi } from '@/store/api/own.api';
+import { ownApi } from '@/store/api';
 
 export const store = configureStore({
   reducer: {

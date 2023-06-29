@@ -1,4 +1,4 @@
-import { ownApi } from '@/store/api/own.api';
+import { ownApi } from '@/store/api';
 import { IUser } from '@/modules/user/interfaces';
 
 const extendedUserApi = ownApi.injectEndpoints({

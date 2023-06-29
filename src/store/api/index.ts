@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { RootState } from '@/store/interfaces';
 import { getEnvOrThrow } from '@/modules/common/utils/getEnvOrThrow';
+import { RootState } from '@/store/interfaces';
 
 export const ownApi = createApi({
   reducerPath: 'ownApi',
