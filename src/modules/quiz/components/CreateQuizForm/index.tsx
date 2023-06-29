@@ -5,7 +5,7 @@ import { Controller, useFieldArray } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { useFormWithPersist } from '@/modules/common/hooks/useFormWithPersist';
-import { useCreateQuizMutation } from '@/modules/common/store/apis/own.api';
+import { useCreateQuizMutation } from '@/modules/quiz/api';
 import { CreateQuestionForm } from '@/modules/quiz/components/CreateQuizForm/components/CreateQuestionForm';
 import { DEFAULT_QUESTION } from '@/modules/quiz/components/CreateQuizForm/constants';
 import { QuestionType } from '@/modules/quiz/components/CreateQuizForm/enums';

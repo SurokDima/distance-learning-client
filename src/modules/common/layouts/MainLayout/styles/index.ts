@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react';
 
-// Most of the antd components in this layout are styled using the elaborate CSS selectors.
+// Most of antd components in the layout are styled using elaborate CSS selectors.
 // And because of that, it's decided to use inline styles for the layout components.
-// In order not to fight with the CSS selectors specificity.
+// In order not to fight with a CSS selectors specificity.
 
 export const SIDER_STYLES: CSSProperties = {
   overflow: 'auto',

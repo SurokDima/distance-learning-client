@@ -1,22 +1,12 @@
 import { FC } from 'react';
-import { useLoaderData } from 'react-router-dom';
 
-import {
-  useGetCoursesQuery,
-  useGetUserQuery,
-} from '@/modules/common/store/apis/own.api';
+import { useGetCoursesQuery } from '@/modules/course/api';
 import { CourseCard } from '@/modules/course/components/CourseCard';
 
 import styles from './styles.module.scss';
 
 export const DashboardPage: FC = () => {
-  const { data, isLoading } = useGetUserQuery();
-  const loaderData = useLoaderData();
-  const { data: courses, isLoading: isCoursesLoading } = useGetCoursesQuery();
-
-  console.log('LOADERDATA', loaderData);
-  console.log('HOOK', courses, isCoursesLoading);
-  console.log('USER', data, isLoading);
+  const { data: courses } = useGetCoursesQuery();
 
   return (
     <div className={styles.coursesContainer}>
