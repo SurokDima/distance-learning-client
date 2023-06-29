@@ -1,4 +1,5 @@
-import { ComponentType, ReactNode } from 'react';
+import { AnyAction } from '@reduxjs/toolkit';
+import { ComponentType, ReactNode, Reducer } from 'react';
 import { RouteObject } from 'react-router-dom';
 
 export type IRoute = RouteObject & {
@@ -14,6 +15,7 @@ export interface IProvider {
 export interface IModule {
   routes?: IRoute[];
   providers?: IProvider[];
+  reducers?: Record<string, Reducer<any, AnyAction>>;
 }
 
 export type IRootModule = Required<IModule>;

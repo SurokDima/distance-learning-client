@@ -3,9 +3,10 @@ import { LoginSuccessPage } from '@/modules/auth/pages/LoginSuccessPage';
 import { LogoutSuccessPage } from '@/modules/auth/pages/LogoutSuccessPage';
 import { Auth0Provider } from '@/modules/auth/providers/Auth0Provider';
 import { LoginSuccessMessageProvider } from '@/modules/auth/providers/LoginSuccessMessageProvider';
+import { authSliceReducer } from '@/modules/auth/store/auth';
 import { NotificationProvider } from '@/modules/common/providers/NotificationProvider';
 
-export const authModule: IModule = {
+export const authModule = {
   routes: [
     {
       path: '/logoutSuccessful',
@@ -28,4 +29,7 @@ export const authModule: IModule = {
       dependsOn: [NotificationProvider],
     },
   ],
-};
+  reducers: {
+    auth: authSliceReducer,
+  },
+} satisfies IModule;

@@ -1,7 +1,7 @@
 import { IModule } from '@/interfaces';
 import { ErrorPage } from '@/modules/common/pages/ErrorPage';
 
-export const quizModule: IModule = {
+export const quizModule = {
   routes: [
     {
       path: '/quizzes/create',
@@ -16,4 +16,6 @@ export const quizModule: IModule = {
       },
     },
   ],
-};
+  providers: [],
+  reducers: {},
+} satisfies IModule;

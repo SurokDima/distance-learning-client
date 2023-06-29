@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
+import { rootModule } from '@/modules';
 import { ownApi } from '@/modules/common/store/apis/own.api';
-import { authSliceReducer } from '@/modules/common/store/slices/auth';
 
 export const store = configureStore({
   reducer: {
-    auth: authSliceReducer,
+    ...rootModule.reducers,
     [ownApi.reducerPath]: ownApi.reducer,
     // [coursesApi.reducerPath]: coursesApi.reducer,
   },
