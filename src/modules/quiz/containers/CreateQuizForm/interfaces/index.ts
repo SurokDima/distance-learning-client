@@ -1,4 +1,4 @@
-import { QuestionType } from '@/modules/quiz/components/CreateQuizForm/enums';
+import { QuestionType } from '@/modules/quiz/containers/CreateQuizForm/enums';
 
 export interface ICreateQuizSingleChoiceQuestionData {
   title: string;

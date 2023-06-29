@@ -1,7 +1,7 @@
 import { Typography } from 'antd';
 import { FC } from 'react';
 
-import { CreateQuizForm } from '@/modules/quiz/components/CreateQuizForm';
+import { CreateQuizForm } from '@/modules/quiz/containers/CreateQuizForm';
 
 export const CreateQuizPage: FC = () => {
   return (

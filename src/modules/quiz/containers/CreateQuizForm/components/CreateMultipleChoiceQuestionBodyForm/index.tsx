@@ -2,7 +2,7 @@ import { Space, Form, Checkbox, Input } from 'antd';
 import { FC } from 'react';
 import { Controller } from 'react-hook-form';
 
-import { ICreateMultipleChoiceQuestionBodyFormProps } from '@/modules/quiz/components/CreateQuizForm/components/CreateMultipleChoiceQuestionBodyForm/interfaces';
+import { ICreateMultipleChoiceQuestionBodyFormProps } from '@/modules/quiz/containers/CreateQuizForm/components/CreateMultipleChoiceQuestionBodyForm/interfaces';
 
 export const CreateMultipleChoiceQuestionBodyForm: FC<
   ICreateMultipleChoiceQuestionBodyFormProps

@@ -1,8 +1,8 @@
 import { Control } from 'react-hook-form';
 
-import { ICreateQuizFormData } from '@/modules/quiz/components/CreateQuizForm/interfaces';
+import { ICreateQuizFormData } from '@/modules/quiz/containers/CreateQuizForm/interfaces';
 
-export interface ICreateMultipleChoiceQuestionBodyFormProps {
+export interface ICreateSingleChoiceQuestionBodyFormProps {
   control: Control<ICreateQuizFormData>;
   getName: <const T extends string>(name: T) => `questions.${number}.${T}`;
   fields: Record<'id', string>[];

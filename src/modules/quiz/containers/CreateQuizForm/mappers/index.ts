@@ -5,12 +5,12 @@ import {
   ICreateQuizBodyMultipleChoiceQuestion,
   ICreateQuizBodySingleChoiceQuestion,
 } from '@/modules/common/store/apis/interfaces/createQuizBody';
-import { QuestionType } from '@/modules/quiz/components/CreateQuizForm/enums';
+import { QuestionType } from '@/modules/quiz/containers/CreateQuizForm/enums';
 import {
   ICreateQuizSingleChoiceQuestionData,
   ICreateQuizMultipleChoiceQuestionData,
   ICreateQuizFormData,
-} from '@/modules/quiz/components/CreateQuizForm/interfaces';
+} from '@/modules/quiz/containers/CreateQuizForm/interfaces';
 
 export const mapFormData = (data: ICreateQuizFormData): ICreateQuizBody => {
   return {

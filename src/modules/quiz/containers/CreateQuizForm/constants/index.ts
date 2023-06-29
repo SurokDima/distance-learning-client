@@ -1,5 +1,5 @@
-import { QuestionType } from '@/modules/quiz/components/CreateQuizForm/enums';
-import { CreateQuizQuestionData } from '@/modules/quiz/components/CreateQuizForm/interfaces';
+import { QuestionType } from '@/modules/quiz/containers/CreateQuizForm/enums';
+import { CreateQuizQuestionData } from '@/modules/quiz/containers/CreateQuizForm/interfaces';
 
 export const DEFAULT_QUESTION = {
   title: 'Question title',

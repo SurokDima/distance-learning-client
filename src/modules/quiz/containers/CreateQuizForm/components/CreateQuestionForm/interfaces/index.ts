@@ -1,6 +1,6 @@
 import { Control, UseFormSetValue, UseFormWatch } from 'react-hook-form';
 
-import { ICreateQuizFormData } from '@/modules/quiz/components/CreateQuizForm/interfaces';
+import { ICreateQuizFormData } from '@/modules/quiz/containers/CreateQuizForm/interfaces';
 
 export interface ICreateQuestionFormProps {
   control: Control<ICreateQuizFormData>;

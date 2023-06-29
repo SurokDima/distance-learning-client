@@ -2,7 +2,7 @@ import { Radio, Space, Form, Input } from 'antd';
 import { FC } from 'react';
 import { Controller } from 'react-hook-form';
 
-import { ICreateSingleChoiceQuestionBodyFormProps } from '@/modules/quiz/components/CreateQuizForm/components/CreateSingleChoiceQuestionBodyForm/interfaces';
+import { ICreateSingleChoiceQuestionBodyFormProps } from '@/modules/quiz/containers/CreateQuizForm/components/CreateSingleChoiceQuestionBodyForm/interfaces';
 
 export const CreateSingleChoiceQuestionBodyForm: FC<
   ICreateSingleChoiceQuestionBodyFormProps

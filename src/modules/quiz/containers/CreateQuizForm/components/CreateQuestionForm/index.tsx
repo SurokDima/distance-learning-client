@@ -3,10 +3,10 @@ import { Card, Tooltip, Button, Space, Form, Input, Select } from 'antd';
 import { FC } from 'react';
 import { useFieldArray, Controller } from 'react-hook-form';
 
-import { CreateMultipleChoiceQuestionBodyForm } from '@/modules/quiz/components/CreateQuizForm/components/CreateMultipleChoiceQuestionBodyForm';
-import { ICreateQuestionFormProps } from '@/modules/quiz/components/CreateQuizForm/components/CreateQuestionForm/interfaces';
-import { CreateSingleChoiceQuestionBodyForm } from '@/modules/quiz/components/CreateQuizForm/components/CreateSingleChoiceQuestionBodyForm';
-import { QuestionType } from '@/modules/quiz/components/CreateQuizForm/enums';
+import { CreateMultipleChoiceQuestionBodyForm } from '@/modules/quiz/containers/CreateQuizForm/components/CreateMultipleChoiceQuestionBodyForm';
+import { ICreateQuestionFormProps } from '@/modules/quiz/containers/CreateQuizForm/components/CreateQuestionForm/interfaces';
+import { CreateSingleChoiceQuestionBodyForm } from '@/modules/quiz/containers/CreateQuizForm/components/CreateSingleChoiceQuestionBodyForm';
+import { QuestionType } from '@/modules/quiz/containers/CreateQuizForm/enums';
 
 const DEFAULT_CHOICES = {
   [QuestionType.SINGLE_CHOICE]: { text: '' },
