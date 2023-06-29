@@ -15,12 +15,10 @@ const modules = [
   quizModule,
 ] as const;
 
-type ModuleReducers = UnionToIntersection<(typeof modules)[number]['reducers']>;
-
 export const rootModule = modules.reduce<{
   routes: IRoute[];
   providers: IProvider[];
-  reducers: ModuleReducers;
+  reducers: UnionToIntersection<(typeof modules)[number]['reducers']>;
 }>(
   (acc, module) => ({
     routes: [...acc.routes, ...(module.routes ?? [])],

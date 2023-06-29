@@ -1,4 +1,4 @@
-import { ownApi } from '@/modules/common/store/api/own.api';
+import { ownApi } from '@/store/api/own.api';
 import { ICreateQuizBody } from '@/modules/quiz/api/interfaces';
 
 const extendedQuizApi = ownApi.injectEndpoints({

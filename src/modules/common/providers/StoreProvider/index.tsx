@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import { setAccessToken } from '@/modules/auth/store/auth';
 import { IStoreProviderProps } from '@/modules/common/providers/StoreProvider/interfaces';
-import { store } from '@/modules/common/store';
+import { store } from '@/store';
 
 export const StoreProvider: FC<IStoreProviderProps> = ({ children }) => {
   const { getAccessTokenSilently } = useAuth0();

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { RootState } from '@/modules/common/store/interfaces';
+import { RootState } from '@/store/interfaces';
 import { getEnvOrThrow } from '@/modules/common/utils/getEnvOrThrow';
 
 export const ownApi = createApi({

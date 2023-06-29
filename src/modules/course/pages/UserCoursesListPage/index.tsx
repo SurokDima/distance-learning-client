@@ -5,7 +5,7 @@ import { CourseCard } from '@/modules/course/components/CourseCard';
 
 import styles from './styles.module.scss';
 
-export const DashboardPage: FC = () => {
+export const UserCoursesPage: FC = () => {
   const { data: courses } = useGetCoursesQuery();
 
   return (

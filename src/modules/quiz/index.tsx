@@ -1,21 +1,8 @@
 import { IModule } from '@/interfaces';
-import { ErrorPage } from '@/modules/common/pages/ErrorPage';
+import { quizModuleRoutes } from '@/modules/quiz/routes';
 
 export const quizModule = {
-  routes: [
-    {
-      path: '/quizzes/create',
-      errorElement: <ErrorPage />,
-      authType: 'private',
-      lazy: async () => {
-        const { CreateQuizPage } = await import(
-          '@/modules/quiz/pages/CreateQuizPage'
-        );
-
-        return { Component: CreateQuizPage };
-      },
-    },
-  ],
+  routes: quizModuleRoutes,
   providers: [],
   reducers: {},
 } satisfies IModule;
