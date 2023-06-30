@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getEnvOrThrow } from '@/modules/common/utils/getEnvOrThrow';
 import { RootState } from '@/store/interfaces';
 
-export const ownApi = createApi({
+export const api = createApi({
   reducerPath: 'ownApi',
   baseQuery: fetchBaseQuery({
     baseUrl: getEnvOrThrow('VITE_OWN_API_URL'),

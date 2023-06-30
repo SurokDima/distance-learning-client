@@ -1,7 +1,7 @@
-import { ownApi } from '@/store/api';
+import { api } from '@/store/api';
 import { ICreateQuizBody } from '@/modules/quiz/api/interfaces';
 
-const extendedQuizApi = ownApi.injectEndpoints({
+const extendedQuizApi = api.injectEndpoints({
   endpoints: (build) => ({
     createQuiz: build.mutation<{ id: string }, ICreateQuizBody>({
       query: (body) => ({

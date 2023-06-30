@@ -7,11 +7,11 @@ export const courseModuleRoutes = [
     errorElement: <ErrorPage />,
     authType: 'private',
     lazy: async () => {
-      const { UserCoursesPage } = await import(
+      const { UserCoursesListPage } = await import(
         '@/modules/course/pages/UserCoursesListPage'
       );
 
-      return { Component: UserCoursesPage };
+      return { Component: UserCoursesListPage };
     },
   },
 ] satisfies IRoute[];
