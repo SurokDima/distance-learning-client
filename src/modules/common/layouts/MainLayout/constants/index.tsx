@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export const MENU_ITEMS: MenuProps['items'] = [
   {
     key: 'dashboard',
-    label: <Link to="/dashboard">Dashboard</Link>,
+    label: <Link to="/user/courses">Dashboard</Link>,
     icon: <UserOutlined />,
   },
   {

@@ -1,35 +1,49 @@
-import { ReactNode, useMemo } from 'react';
+import { ComponentType, ReactNode, useMemo } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import { IRoute } from '@/modules/common/interfaces/module';
 import { PrivateRoute } from '@/modules/common/providers/RouterProvider/components/PrivateRoute';
-import { Router } from '@/modules/common/providers/RouterProvider/interfaces';
-import { sortRoutes } from '@/modules/common/providers/RouterProvider/utils';
-
-import { MainLayout } from '../../../layouts/MainLayout/index';
+import { PublicRoute } from '@/modules/common/providers/RouterProvider/components/PublicRoute';
+import {
+  ISortedRoutes,
+  Router,
+} from '@/modules/common/providers/RouterProvider/interfaces';
+import { sortRoutesByAuthType } from '@/modules/common/providers/RouterProvider/utils/sortRoutesByAuthType';
+import { sortRoutesByLayout } from '@/modules/common/providers/RouterProvider/utils/sortRoutesByLayout';
 
 export const useRouter = (routes: IRoute[], providers: ReactNode): Router => {
-  // TODO add public routes
-  const sortedRoutes = useMemo(() => sortRoutes(routes), [routes]);
+  const routesByLayout = useMemo(() => sortRoutesByLayout(routes), [routes]);
+
+  const sortedRoutes = useMemo(() => {
+    const entries = routesByLayout.entries();
+
+    return [...entries].reduce((acc, [layout, routes]) => {
+      acc.set(layout, sortRoutesByAuthType(routes));
+      return acc;
+    }, new Map<ComponentType, ISortedRoutes>());
+  }, [routesByLayout]);
 
   return useMemo(
     () =>
       createBrowserRouter([
         {
           element: providers,
-          children: [
-            {
-              element: <MainLayout />,
-              children: [
-                ...sortedRoutes.commonRoutes,
-                {
-                  path: '/',
-                  element: <PrivateRoute />,
-                  children: sortedRoutes.privateRoutes,
-                },
-              ],
-            },
-          ],
+          children: [...sortedRoutes.entries()].map(([Layout, routes]) => ({
+            element: <Layout />,
+            children: [
+              ...routes.commonRoutes,
+              {
+                path: '/',
+                element: <PrivateRoute />,
+                children: routes.privateRoutes,
+              },
+              {
+                path: '/',
+                element: <PublicRoute />,
+                children: routes.publicRoutes,
+              },
+            ],
+          })),
         },
       ]),
     [sortedRoutes, providers]

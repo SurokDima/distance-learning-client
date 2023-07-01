@@ -22,7 +22,7 @@ const routeSorters: {
   }),
 };
 
-export const sortRoutes = (routes: IRoute[]): ISortedRoutes => {
+export const sortRoutesByAuthType = (routes: IRoute[]): ISortedRoutes => {
   return routes.reduce<ISortedRoutes>(
     (acc, route) => routeSorters[route.authType](route, acc),
     {

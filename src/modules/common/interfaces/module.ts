@@ -6,6 +6,7 @@ import { RouteAuthType } from '@/modules/common/enums/routeAuthTypes';
 
 export type IRoute = RouteObject & {
   authType: RouteAuthType;
+  layout: ComponentType;
 };
 
 export type ProviderComponent = ComponentType<{ children: ReactNode }>;
