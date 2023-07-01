@@ -2,6 +2,7 @@ import { AnyAction } from '@reduxjs/toolkit';
 import { ComponentType, ReactNode, Reducer } from 'react';
 import { RouteObject } from 'react-router-dom';
 
+// TODO move to common module
 export type IRoute = RouteObject & {
   authType: 'public' | 'private' | 'common';
 };

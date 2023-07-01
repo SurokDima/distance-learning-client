@@ -39,9 +39,6 @@ export const ProvidersProvider: FC<IProvidersProviderProps> = ({
     [providers]
   );
 
-  console.log('RAW', providers);
-  console.log('SORTED', sortedProviders);
-
   return (
     <ProvidersContainer providers={sortedProviders}>
       <Outlet />

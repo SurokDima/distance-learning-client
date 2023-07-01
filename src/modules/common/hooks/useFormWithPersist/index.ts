@@ -6,6 +6,8 @@ import {
   useForm,
 } from 'react-hook-form';
 
+// TODO add no-console eslint rule
+
 export const useFormWithPersist = <
   TFieldValues extends FieldValues = FieldValues,
   TContext = any,
@@ -44,7 +46,6 @@ export const useFormWithPersist = <
   const formState = watch();
 
   useEffect(() => {
-    console.log('SAVING DATA', formState);
     storage.setItem(localStorageKey, JSON.stringify(formState));
   }, [formState, localStorageKey, storage]);
 

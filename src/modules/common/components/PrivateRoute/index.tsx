@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 interface ILocationState {
   auth?: 'LOGIN' | 'LOGOUT';
 }
-
+// TODO move to auth
 export const PrivateRoute: FC = () => {
   const { isLoading, loginWithRedirect, user } = useAuth0();
   const { pathname, state } = useLocation();

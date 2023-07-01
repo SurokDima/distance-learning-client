@@ -16,6 +16,7 @@ import { StoreProvider } from '@/modules/common/providers/StoreProvider';
 const sortRoutes = (routes: IRoute[]): ISortedRoutes => {
   return routes.reduce<ISortedRoutes>(
     (acc, route) => {
+      // TODO refactor to object
       if (route.authType === 'common')
         return { ...acc, commonRoutes: [...acc.commonRoutes, route] };
 
@@ -42,6 +43,8 @@ const DefaultProviders: FC = () => {
     </Auth0Provider>
   );
 };
+
+// TODO move it (maybe to `services` instead of `utils`)
 
 export const createRouter = (routes: IRoute[]): Router => {
   // TODO add public routes

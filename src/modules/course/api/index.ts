@@ -1,5 +1,5 @@
-import { api } from '@/store/api';
 import { ICourse } from '@/modules/course/interfaces';
+import { api } from '@/store/api';
 
 const extendedCourseApi = api.injectEndpoints({
   endpoints: (build) => ({
