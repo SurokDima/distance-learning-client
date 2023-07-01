@@ -4,7 +4,6 @@ import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { rootModule } from '@/modules';
 import { api } from '@/store/api';
 
-// TODO refactor that
 export const store = configureStore({
   reducer: {
     ...rootModule.reducers,

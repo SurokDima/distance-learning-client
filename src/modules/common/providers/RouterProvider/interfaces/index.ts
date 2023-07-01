@@ -1,9 +1,11 @@
+import { ReactNode } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { IRoute } from '@/interfaces';
+import { IRoute } from '@/modules/common/interfaces/module';
 
 export interface IRouterProviderProps {
   routes: IRoute[];
+  providers: ReactNode;
 }
 
 export interface ISortedRoutes {

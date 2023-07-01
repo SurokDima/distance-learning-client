@@ -2,9 +2,10 @@ import { AnyAction } from '@reduxjs/toolkit';
 import { ComponentType, ReactNode, Reducer } from 'react';
 import { RouteObject } from 'react-router-dom';
 
-// TODO move to common module
+import { RouteAuthType } from '@/modules/common/enums/routeAuthTypes';
+
 export type IRoute = RouteObject & {
-  authType: 'public' | 'private' | 'common';
+  authType: RouteAuthType;
 };
 
 export type ProviderComponent = ComponentType<{ children: ReactNode }>;
@@ -15,7 +16,6 @@ export interface IProvider {
 }
 export interface IModule {
   routes?: IRoute[];
-  providers?: IProvider[];
   reducers?: Record<string, Reducer<any, AnyAction>>;
 }
 

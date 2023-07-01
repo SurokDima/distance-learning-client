@@ -6,8 +6,6 @@ import {
   useForm,
 } from 'react-hook-form';
 
-// TODO add no-console eslint rule
-
 export const useFormWithPersist = <
   TFieldValues extends FieldValues = FieldValues,
   TContext = any,
@@ -29,8 +27,6 @@ export const useFormWithPersist = <
     // Parse it to a javaScript object
     try {
       const form = JSON.parse(data);
-      console.log('form', form);
-
       return form;
     } catch (err) {
       return null;
