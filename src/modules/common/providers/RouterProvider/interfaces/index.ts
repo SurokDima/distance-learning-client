@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
+import { RouteAuthType } from '@/modules/common/enums/routeAuthTypes';
 import { IRoute } from '@/modules/common/interfaces/module';
 
 export interface IRouterProviderProps {
@@ -8,10 +9,8 @@ export interface IRouterProviderProps {
   providers: ReactNode;
 }
 
-export interface ISortedRoutes {
-  commonRoutes: IRoute[];
-  privateRoutes: IRoute[];
-  publicRoutes: IRoute[];
-}
+export type SortedRoutes = {
+  [K in RouteAuthType]: IRoute[];
+};
 
 export type Router = ReturnType<typeof createBrowserRouter>;
