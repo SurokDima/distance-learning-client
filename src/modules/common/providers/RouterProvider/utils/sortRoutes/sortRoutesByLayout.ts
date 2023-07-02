@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 
-import { IRoute } from '@/modules/common/interfaces/module';
+import { IRoute } from '@/modules/common/interfaces';
 
 export const sortRoutesByLayout = (
   routes: IRoute[]

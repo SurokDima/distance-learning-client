@@ -2,7 +2,7 @@ import { UnionToIntersection } from '@reduxjs/toolkit/dist/tsHelpers';
 
 import { authModule } from '@/modules/auth';
 import { commonModule } from '@/modules/common';
-import { IRootModule, IRoute } from '@/modules/common/interfaces/module';
+import { IRootModule, IRoute } from '@/modules/common/interfaces';
 import { courseModule } from '@/modules/course';
 import { quizModule } from '@/modules/quiz';
 import { userModule } from '@/modules/user';

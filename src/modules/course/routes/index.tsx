@@ -1,6 +1,6 @@
 import { RouteAuthType } from '@/modules/common/enums/routeAuthTypes';
-import { IRoute } from '@/modules/common/interfaces/module';
-import { MainLayout } from '@/modules/common/layouts/MainLayout';
+import { IRoute } from '@/modules/common/interfaces';
+import { MainLayout } from '@/modules/common/layouts';
 import { ErrorPage } from '@/modules/common/pages/ErrorPage';
 
 export const courseModuleRoutes = [

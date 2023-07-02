@@ -2,8 +2,9 @@ import { Card, Divider, Progress, Space, Typography } from 'antd';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { ICourseCardProps } from '@/modules/course/components/CourseCard/interfaces';
-import { UserAvatar } from '@/modules/user/components/UserAvatar';
+import { UserAvatar } from '@/modules/user/components';
+
+import { ICourseCardProps } from './interfaces';
 
 export const CourseCard: FC<ICourseCardProps> = ({
   course: { id, name, author },

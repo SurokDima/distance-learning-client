@@ -1,8 +1,8 @@
 import { LoginSuccessPage } from '@/modules/auth/pages/LoginSuccessPage';
 import { LogoutSuccessPage } from '@/modules/auth/pages/LogoutSuccessPage';
 import { RouteAuthType } from '@/modules/common/enums/routeAuthTypes';
-import { IRoute } from '@/modules/common/interfaces/module';
-import { MainLayout } from '@/modules/common/layouts/MainLayout';
+import { IRoute } from '@/modules/common/interfaces';
+import { MainLayout } from '@/modules/common/layouts';
 
 export const authModuleRoutes = [
   {

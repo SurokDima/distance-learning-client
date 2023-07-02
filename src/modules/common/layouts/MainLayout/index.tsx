@@ -5,11 +5,11 @@ import { FC, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Outlet } from 'react-router-dom';
 
-import { ToggleThemeButton } from '@/modules/common/components/ToggleThemeButton';
-import { Logo } from '@/modules/common/layouts/MainLayout/components/Logo';
-import { User } from '@/modules/common/layouts/MainLayout/components/User';
-import { UserSkeleton } from '@/modules/common/layouts/MainLayout/components/UserSkeleton';
-import { MENU_ITEMS } from '@/modules/common/layouts/MainLayout/constants';
+import { ToggleThemeButton } from '@/modules/common/components';
+import { useNotification } from '@/modules/common/providers/NotificationProvider/hooks';
+
+import { UserSkeleton, Logo, User } from './components';
+import { MENU_ITEMS } from './constants';
 import {
   CONTENT,
   HEADER_STYLES,
@@ -18,8 +18,7 @@ import {
   SIDER_STYLES,
   SIDER_MENU_STYLES,
   TOGGLE_SIDER_BUTTON_STYLES,
-} from '@/modules/common/layouts/MainLayout/styles';
-import { useNotification } from '@/modules/common/providers/NotificationProvider/hooks';
+} from './styles';
 
 const { Header, Sider, Content } = Layout;
 const { useToken } = theme;

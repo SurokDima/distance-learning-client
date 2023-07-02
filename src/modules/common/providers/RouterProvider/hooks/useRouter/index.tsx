@@ -2,15 +2,14 @@ import { ComponentType, ReactNode, useMemo } from 'react';
 import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
 import { RouteAuthType } from '@/modules/common/enums/routeAuthTypes';
-import { IRoute } from '@/modules/common/interfaces/module';
-import { PrivateRoute } from '@/modules/common/providers/RouterProvider/components/PrivateRoute';
-import { PublicRoute } from '@/modules/common/providers/RouterProvider/components/PublicRoute';
+import { IRoute } from '@/modules/common/interfaces';
+
+import { PrivateRoute, PublicRoute } from '../../components';
+import { Router, SortedRoutes } from '../../interfaces';
 import {
-  SortedRoutes,
-  Router,
-} from '@/modules/common/providers/RouterProvider/interfaces';
-import { sortRoutesByAuthType } from '@/modules/common/providers/RouterProvider/utils/sortRoutesByAuthType';
-import { sortRoutesByLayout } from '@/modules/common/providers/RouterProvider/utils/sortRoutesByLayout';
+  sortRoutesByAuthType,
+  sortRoutesByLayout,
+} from '../../utils/sortRoutes';
 
 export const useRouter = (routes: IRoute[], providers: ReactNode): Router => {
   const routesByLayout = useMemo(() => sortRoutesByLayout(routes), [routes]);

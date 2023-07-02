@@ -1,9 +1,6 @@
-import { IModule } from '@/modules/common/interfaces/module';
-
-// TODO Remove providers system in modules
+import { IModule } from '@/modules/common/interfaces';
 
 export const commonModule = {
   routes: [],
   reducers: {},
 } satisfies IModule;
-// TODO add barrel files

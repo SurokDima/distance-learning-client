@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { useGetCoursesQuery } from '@/modules/course/api';
-import { CourseCard } from '@/modules/course/components/CourseCard';
+import { CourseCard } from '@/modules/course/components';
 
 import styles from './styles.module.scss';
 

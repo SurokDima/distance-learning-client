@@ -1,4 +1,4 @@
-import { IModule } from '@/modules/common/interfaces/module';
+import { IModule } from '@/modules/common/interfaces';
 import { quizModuleRoutes } from '@/modules/quiz/routes';
 
 export const quizModule = {

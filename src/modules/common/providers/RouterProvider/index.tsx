@@ -2,8 +2,8 @@ import { Spin } from 'antd';
 import { FC } from 'react';
 import { RouterProvider as ReactRouteRoutesProvider } from 'react-router-dom';
 
-import { useRouter } from '@/modules/common/providers/RouterProvider/hooks/useRouter';
-import { IRouterProviderProps } from '@/modules/common/providers/RouterProvider/interfaces';
+import { useRouter } from './hooks';
+import { IRouterProviderProps } from './interfaces';
 
 export const RouterProvider: FC<IRouterProviderProps> = ({
   routes,

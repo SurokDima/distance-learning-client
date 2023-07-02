@@ -2,8 +2,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import { FC, useState } from 'react';
 
-import { IUserAvatarProps } from '@/modules/user/components/UserAvatar/interfaces';
-
+import { IUserAvatarProps } from './interfaces';
 import styles from './styles.module.scss';
 
 export const UserAvatar: FC<IUserAvatarProps> = ({ src }) => {

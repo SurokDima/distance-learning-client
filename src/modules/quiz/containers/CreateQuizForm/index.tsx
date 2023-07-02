@@ -4,14 +4,14 @@ import { FC } from 'react';
 import { Controller, useFieldArray } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { useFormWithPersist } from '@/modules/common/hooks/useFormWithPersist';
+import { useFormWithPersist } from '@/modules/common/hooks';
 import { useCreateQuizMutation } from '@/modules/quiz/api';
-import { CreateQuestionForm } from '@/modules/quiz/containers/CreateQuizForm/components/CreateQuestionForm';
-import { DEFAULT_QUESTION } from '@/modules/quiz/containers/CreateQuizForm/constants';
-import { QuestionType } from '@/modules/quiz/containers/CreateQuizForm/enums';
-import { ICreateQuizFormData } from '@/modules/quiz/containers/CreateQuizForm/interfaces';
-import { mapFormData } from '@/modules/quiz/containers/CreateQuizForm/mappers';
 
+import { CreateQuestionForm } from './components';
+import { DEFAULT_QUESTION } from './constants';
+import { QuestionType } from './enums';
+import { ICreateQuizFormData } from './interfaces';
+import { mapFormData } from './mappers';
 import styles from './styles.module.scss';
 
 const getName = (index: number) =>

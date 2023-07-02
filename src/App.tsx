@@ -2,15 +2,19 @@ import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { rootModule } from '@/modules';
-import { Auth0Provider } from '@/modules/auth/providers/Auth0Provider';
-import { LoginSuccessMessageProvider } from '@/modules/auth/providers/LoginSuccessMessageProvider';
-import { BodyBgColorProvider } from '@/modules/common/providers/BodyBgColorProvider';
-import { GlobalLoaderProvider } from '@/modules/common/providers/GlobalLoaderProvider';
-import { InitialLoaderProvider } from '@/modules/common/providers/InitialLoaderProvider';
-import { NotificationProvider } from '@/modules/common/providers/NotificationProvider';
-import { RouterProvider } from '@/modules/common/providers/RouterProvider';
-import { StoreProvider } from '@/modules/common/providers/StoreProvider';
-import { ThemeProvider } from '@/modules/common/providers/ThemeProvider';
+import {
+  Auth0Provider,
+  LoginSuccessMessageProvider,
+} from '@/modules/auth/providers';
+import {
+  InitialLoaderProvider,
+  ThemeProvider,
+  BodyBgColorProvider,
+  GlobalLoaderProvider,
+  NotificationProvider,
+  StoreProvider,
+  RouterProvider,
+} from '@/modules/common/providers';
 
 const Providers: FC = () => {
   return (

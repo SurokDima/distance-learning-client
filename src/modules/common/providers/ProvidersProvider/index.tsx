@@ -1,10 +1,7 @@
 import { FC, useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import {
-  IProvider,
-  ProviderComponent,
-} from '@/modules/common/interfaces/module';
+import { IProvider, ProviderComponent } from '@/modules/common/interfaces';
 
 interface IProvidersProviderProps {
   providers: IProvider[];

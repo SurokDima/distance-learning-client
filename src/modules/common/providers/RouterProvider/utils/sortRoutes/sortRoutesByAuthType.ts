@@ -1,4 +1,4 @@
-import { IRoute } from '@/modules/common/interfaces/module';
+import { IRoute } from '@/modules/common/interfaces';
 import { SortedRoutes } from '@/modules/common/providers/RouterProvider/interfaces';
 
 export const sortRoutesByAuthType = (routes: IRoute[]): SortedRoutes => {

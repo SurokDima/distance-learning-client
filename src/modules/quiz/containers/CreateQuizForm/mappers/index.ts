@@ -2,9 +2,9 @@ import { nanoid } from '@reduxjs/toolkit';
 
 import {
   ICreateQuizBody,
-  ICreateQuizBodyMultipleChoiceQuestion,
   ICreateQuizBodySingleChoiceQuestion,
-} from '@/modules/common/store/apis/interfaces/createQuizBody';
+  ICreateQuizBodyMultipleChoiceQuestion,
+} from '@/modules/quiz/api/interfaces';
 import { QuestionType } from '@/modules/quiz/containers/CreateQuizForm/enums';
 import {
   ICreateQuizSingleChoiceQuestionData,
