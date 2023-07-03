@@ -7,3 +7,5 @@ export const DEFAULT_QUESTION = {
   correctAnswerIndex: 0,
   options: [{ text: 'Answer 1' }],
 } satisfies CreateQuizQuestionData;
+
+export const STORAGE_KEY = 'create-quiz-form';

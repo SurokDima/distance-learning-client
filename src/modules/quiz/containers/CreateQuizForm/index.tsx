@@ -8,7 +8,7 @@ import { useFormWithPersist } from '@/modules/common/hooks';
 import { useCreateQuizMutation } from '@/modules/quiz/api';
 
 import { CreateQuestionForm } from './components';
-import { DEFAULT_QUESTION } from './constants';
+import { DEFAULT_QUESTION, STORAGE_KEY } from './constants';
 import { QuestionType } from './enums';
 import { ICreateQuizFormData } from './interfaces';
 import { mapFormData } from './mappers';
@@ -22,9 +22,9 @@ const getName = (index: number) =>
 // TODO add support for map questions
 
 export const CreateQuizForm: FC = () => {
-  const { control, watch, handleSubmit, setValue } =
+  const { control, watch, handleSubmit, setValue, clearStorage } =
     useFormWithPersist<ICreateQuizFormData>(
-      { localStorageKey: 'create-quiz-form', storage: localStorage },
+      { key: STORAGE_KEY, storage: localStorage },
       {
         defaultValues: {
           questions: [DEFAULT_QUESTION],
@@ -43,6 +43,7 @@ export const CreateQuizForm: FC = () => {
   const onSubmit = async (data: ICreateQuizFormData): Promise<void> => {
     const { id } = await createQuiz(mapFormData(data)).unwrap();
     navigate(`/quizzes/${id}`);
+    clearStorage();
   };
 
   const handleAddButtonClick = (): void => {
