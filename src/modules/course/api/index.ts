@@ -1,7 +1,7 @@
-import { ownApi } from '@/store/api';
 import { ICourse } from '@/modules/course/interfaces';
+import { api } from '@/store/api';
 
-const extendedCourseApi = ownApi.injectEndpoints({
+const extendedCourseApi = api.injectEndpoints({
   endpoints: (build) => ({
     getCourses: build.query<ICourse[], void>({
       query: () => '/users/me/courses',

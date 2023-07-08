@@ -1,8 +1,12 @@
-import { ownApi } from '@/store/api';
-import { ICreateQuizBody } from '@/modules/quiz/api/interfaces';
+import { IQuiz } from '@/modules/quiz/api/interfaces';
+import { ICreateQuizBody } from '@/modules/quiz/api/interfaces/createQuizBody';
+import { api } from '@/store/api';
 
-const extendedQuizApi = ownApi.injectEndpoints({
+const extendedQuizApi = api.injectEndpoints({
   endpoints: (build) => ({
+    getQuiz: build.query<IQuiz, string>({
+      query: (id) => `/quizzes/${id}`,
+    }),
     createQuiz: build.mutation<{ id: string }, ICreateQuizBody>({
       query: (body) => ({
         url: '/quizzes',
@@ -13,4 +17,4 @@ const extendedQuizApi = ownApi.injectEndpoints({
   }),
 });
 
-export const { useCreateQuizMutation } = extendedQuizApi;
+export const { useCreateQuizMutation, useGetQuizQuery } = extendedQuizApi;

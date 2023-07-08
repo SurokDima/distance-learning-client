@@ -1,7 +1,6 @@
-import { IModule } from '@/interfaces';
+import { IModule } from '@/modules/common/interfaces';
 
 export const userModule = {
   routes: [],
-  providers: [],
   reducers: {},
 } satisfies IModule;

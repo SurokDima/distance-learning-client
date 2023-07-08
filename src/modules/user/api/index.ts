@@ -1,7 +1,7 @@
-import { ownApi } from '@/store/api';
 import { IUser } from '@/modules/user/interfaces';
+import { api } from '@/store/api';
 
-const extendedUserApi = ownApi.injectEndpoints({
+const extendedUserApi = api.injectEndpoints({
   endpoints: (build) => ({
     getUser: build.query<IUser, void>({
       query: () => '/users/me',

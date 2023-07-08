@@ -1,4 +1,4 @@
-import { authSliceReducer } from '@/modules/auth/store/auth';
+import { authSliceReducer } from './auth';
 
 export const authModuleReducers = {
   auth: authSliceReducer,

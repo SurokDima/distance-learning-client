@@ -1,8 +1,6 @@
-import { IModule } from '@/interfaces';
-import { commonModuleProviders } from '@/modules/common/providers';
+import { IModule } from '@/modules/common/interfaces';
 
 export const commonModule = {
   routes: [],
-  providers: commonModuleProviders,
   reducers: {},
 } satisfies IModule;

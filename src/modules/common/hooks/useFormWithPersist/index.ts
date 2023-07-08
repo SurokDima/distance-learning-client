@@ -1,39 +1,37 @@
 import { useCallback, useEffect } from 'react';
+import { FieldValues, UseFormProps, useForm } from 'react-hook-form';
+
 import {
-  FieldValues,
-  UseFormProps,
-  UseFormReturn,
-  useForm,
-} from 'react-hook-form';
+  IStorageProps,
+  IUseFormWithPersistReturnValue,
+} from '@/modules/common/hooks/useFormWithPersist/interfaces';
 
 export const useFormWithPersist = <
   TFieldValues extends FieldValues = FieldValues,
   TContext = any,
   TTransformedValues extends FieldValues | undefined = undefined
 >(
-  {
-    localStorageKey,
-    storage,
-  }: {
-    localStorageKey: string;
-    storage: Storage;
-  },
+  { key, storage }: IStorageProps,
   props: UseFormProps<TFieldValues, TContext>
-): UseFormReturn<TFieldValues, TContext, TTransformedValues> => {
+): IUseFormWithPersistReturnValue<
+  TFieldValues,
+  TContext,
+  TTransformedValues
+> & {
+  clearStorage: () => void;
+} => {
   const getSavedData = useCallback(() => {
-    const data = storage.getItem(localStorageKey);
+    const data = storage.getItem(key);
     if (!data) return null;
 
     // Parse it to a javaScript object
     try {
       const form = JSON.parse(data);
-      console.log('form', form);
-
       return form;
     } catch (err) {
       return null;
     }
-  }, [localStorageKey, storage]);
+  }, [key, storage]);
 
   const { watch, ...restForm } = useForm<
     TFieldValues,
@@ -44,9 +42,12 @@ export const useFormWithPersist = <
   const formState = watch();
 
   useEffect(() => {
-    console.log('SAVING DATA', formState);
-    storage.setItem(localStorageKey, JSON.stringify(formState));
-  }, [formState, localStorageKey, storage]);
+    storage.setItem(key, JSON.stringify(formState));
+  }, [formState, key, storage]);
 
-  return { watch, ...restForm };
+  const clearStorage = useCallback(() => {
+    storage.removeItem(key);
+  }, [key, storage]);
+
+  return { watch, clearStorage, ...restForm };
 };

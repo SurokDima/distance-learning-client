@@ -1,12 +1,10 @@
 import { Button, Result } from 'antd';
 import { FC } from 'react';
-import { useNavigate, useRouteError } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './styles.module.scss';
 
 export const ErrorPage: FC = () => {
-  const error = useRouteError();
-  console.log(error);
   const navigate = useNavigate();
 
   return (

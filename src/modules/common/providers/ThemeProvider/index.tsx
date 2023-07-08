@@ -1,8 +1,8 @@
 import { ConfigProvider, theme } from 'antd';
 import { FC, useCallback, useState } from 'react';
 
-import { ThemeContext } from '@/modules/common/providers/ThemeProvider/contexts';
-import { IThemeProviderProps } from '@/modules/common/providers/ThemeProvider/interfaces';
+import { ThemeContext } from './contexts';
+import { IThemeProviderProps } from './interfaces';
 
 const { darkAlgorithm, defaultAlgorithm } = theme;
 

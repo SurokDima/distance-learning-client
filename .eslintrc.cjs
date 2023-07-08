@@ -47,6 +47,7 @@ module.exports = {
     'prettier/prettier': ['error'],
     'eol-last': ['error', 'always'],
     'import/no-cycle': 0,
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
     'import/prefer-default-export': 0,
     'import/no-unresolved': 0,
     'import/order': [
@@ -61,9 +62,9 @@ module.exports = {
           'builtin',
           'external',
           'internal',
+          'parent',
           'sibling',
           'index',
-          'parent',
         ],
       },
     ],

@@ -6,7 +6,6 @@
  * @returns environment variable value
  */
 export const getEnvOrThrow = (key: string, errorMessage?: string): string => {
-  console.log(import.meta.env);
   const value = import.meta.env[key] as string | undefined;
 
   if (!value) {

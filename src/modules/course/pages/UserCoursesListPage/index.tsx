@@ -1,18 +1,13 @@
+import { Space, Typography } from 'antd';
 import { FC } from 'react';
 
-import { useGetCoursesQuery } from '@/modules/course/api';
-import { CourseCard } from '@/modules/course/components/CourseCard';
+import { UserCoursesList } from '@/modules/course/containers/UserCoursesList';
 
-import styles from './styles.module.scss';
-
-export const UserCoursesPage: FC = () => {
-  const { data: courses } = useGetCoursesQuery();
-
+export const UserCoursesListPage: FC = () => {
   return (
-    <div className={styles.coursesContainer}>
-      {courses?.map((course) => (
-        <CourseCard course={course} />
-      ))}
-    </div>
+    <Space direction="vertical" size="large">
+      <Typography.Title level={1}>Courses</Typography.Title>
+      <UserCoursesList />
+    </Space>
   );
 };

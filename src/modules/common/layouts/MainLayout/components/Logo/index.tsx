@@ -2,8 +2,7 @@ import classNames from 'classnames';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { ILogoProps } from '@/modules/common/layouts/MainLayout/components/Logo/interfaces';
-
+import { ILogoProps } from './interfaces';
 import styles from './styles.module.scss';
 
 export const Logo: FC<ILogoProps> = ({ form = 'short' }) => {

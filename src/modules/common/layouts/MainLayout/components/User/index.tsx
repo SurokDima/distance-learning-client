@@ -38,8 +38,6 @@ export const User: FC = () => {
     },
   ];
 
-  console.log(user?.picture);
-
   return (
     <Dropdown menu={{ items: items3 }} trigger={['click']}>
       <Space className={styles.container} size="small">

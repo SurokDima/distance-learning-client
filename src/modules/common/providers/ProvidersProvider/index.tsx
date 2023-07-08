@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { IProvider, ProviderComponent } from '@/interfaces';
+import { IProvider, ProviderComponent } from '@/modules/common/interfaces';
 
 interface IProvidersProviderProps {
   providers: IProvider[];
@@ -38,9 +38,6 @@ export const ProvidersProvider: FC<IProvidersProviderProps> = ({
     () => performTopologicalSorting(providers),
     [providers]
   );
-
-  console.log('RAW', providers);
-  console.log('SORTED', sortedProviders);
 
   return (
     <ProvidersContainer providers={sortedProviders}>

@@ -1,13 +1,8 @@
-import { BodyBgColorProvider } from './BodyBgColorProvider';
-import { GlobalLoaderProvider } from './GlobalLoaderProvider';
-import { InitialLoaderProvider } from './InitialLoaderProvider';
-import { NotificationProvider } from './NotificationProvider';
-import { ThemeProvider } from './ThemeProvider';
-
-export const commonModuleProviders = [
-  { component: BodyBgColorProvider, dependsOn: [ThemeProvider] },
-  { component: InitialLoaderProvider, dependsOn: [] },
-  { component: ThemeProvider, dependsOn: [] },
-  { component: GlobalLoaderProvider, dependsOn: [ThemeProvider] },
-  { component: NotificationProvider, dependsOn: [ThemeProvider] },
-];
+export * from './BodyBgColorProvider';
+export * from './GlobalLoaderProvider';
+export * from './InitialLoaderProvider';
+export * from './NotificationProvider';
+export * from './ProvidersProvider';
+export * from './RouterProvider';
+export * from './StoreProvider';
+export * from './ThemeProvider';
