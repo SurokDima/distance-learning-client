@@ -42,7 +42,7 @@ export const CreateQuizForm: FC = () => {
 
   const onSubmit = async (data: ICreateQuizFormData): Promise<void> => {
     const { id } = await createQuiz(mapFormData(data)).unwrap();
-    navigate(`/quizzes/${id}`);
+    navigate(`/quizzes/${id}`, { state: { wasCreated: true } });
     clearStorage();
   };
 

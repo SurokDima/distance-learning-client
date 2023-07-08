@@ -4,7 +4,7 @@ import {
   ICreateQuizBody,
   ICreateQuizBodySingleChoiceQuestion,
   ICreateQuizBodyMultipleChoiceQuestion,
-} from '@/modules/quiz/api/interfaces';
+} from '@/modules/quiz/api/interfaces/createQuizBody';
 import { QuestionType } from '@/modules/quiz/containers/CreateQuizForm/enums';
 import {
   ICreateQuizSingleChoiceQuestionData,

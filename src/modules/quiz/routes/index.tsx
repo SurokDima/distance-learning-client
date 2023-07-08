@@ -17,4 +17,14 @@ export const quizModuleRoutes = [
       return { Component: CreateQuizPage };
     },
   },
+  {
+    path: '/quizzes/:id',
+    errorElement: <ErrorPage />,
+    authType: RouteAuthType.COMMON,
+    layout: MainLayout,
+    lazy: async () => {
+      const { QuizPage } = await import('@/modules/quiz/pages/QuizPage');
+      return { Component: QuizPage };
+    },
+  },
 ] satisfies IRoute[];
